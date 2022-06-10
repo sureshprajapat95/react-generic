@@ -11,12 +11,16 @@ async function ApiService(URL, payload = {}) {
     url: baseURL + URL.route,
     data,
   });
-  return response.data;
-  // const [isLoading, setIsLoading] = useState(false);
-  // const getReq = async () => {
-  //   const response = await axios.get('https://swapi.dev/api/people/1/');
-  //   return response;
-  // };
+  // return response.data;
+
+  // const response = axios({
+  //   method: URL.method,
+  //   url: baseURL + URL.route,
+  //   data,
+  // }).then(function (response) {
+  //   // handle success
+  //   console.log(response);
+  // });
 }
 
 export const Loader = () => {

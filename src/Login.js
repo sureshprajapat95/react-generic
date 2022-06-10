@@ -22,8 +22,10 @@ function Login() {
       email,
       password,
     };
-    const response = await ApiService(apiRoutes.login, payload);
-    console.log(response);
+    const response = await ApiService(apiRoutes.login, payload).then((resp) =>
+      console.log(resp)
+    );
+    // console.log(response);
 
     // navigate(`/teams`);
   };
