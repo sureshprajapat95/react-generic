@@ -1,26 +1,42 @@
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './Login';
-import Teams from './Teams';
-import NewTeamForm from './NewTeamForm';
-import Team from './Team';
-import LeagueStandings from './LeagueStandings';
-import App from './App';
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import Users from "./Users";
+import App from "./App";
+import AddUser from "./pages/AddUser";
+import PrivateRoute from "./pages/PrivateRoute";
+import { AuthContextProvider } from "./store/auth-context";
 
-const rootElement = document.getElementById('root');
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
+const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
 root.render(
   <BrowserRouter>
-    <Routes>
-      <Route index element={<Login />}></Route>
-      <Route path="teams" element={<Teams />}>
-        <Route path=":teamId" element={<Team />} />
-        <Route path="new" element={<NewTeamForm />} />
-        <Route index element={<LeagueStandings />} />
-      </Route>
-    </Routes>
-    <App />
+    <AuthContextProvider>
+      <Routes>
+        <Route index element={<Login />} />
+        <Route
+          path="users"
+          element={
+            <PrivateRoute>
+              <Users />
+            </PrivateRoute>
+          }
+        />
+        <Route path="add-user" element={
+            <PrivateRoute>
+              <AddUser />
+            </PrivateRoute>
+            }
+            />
+      </Routes>
+      <App />
+      <ToastContainer closeOnClick={false} closeButton={false} />
+    </AuthContextProvider>
   </BrowserRouter>
 );
