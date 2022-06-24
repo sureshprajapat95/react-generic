@@ -3,7 +3,7 @@ import axios from 'axios';
 function ApiService(URL, payload=null) {
   // const response = await axios.get('https://swapi.dev/api/people/1/');
   
-  const baseURL = 'https://echofounder.com/inquiry/';
+  const baseURL = 'https://api-url.com/api/';
   let data;
   if(payload){
     data = {
